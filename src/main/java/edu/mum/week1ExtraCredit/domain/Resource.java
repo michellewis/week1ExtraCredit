@@ -1,12 +1,15 @@
 package edu.mum.week1ExtraCredit.domain;
 
+import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 import javax.persistence.Enumerated;
 
 @Embeddable
 public class Resource {
+    @Basic(optional = false)
     private String description;
-    private int quantity;
+    @Basic(optional = false)
+    private Integer quantity;
     private String requiredSquils;
     @Enumerated
     ResourceType type;
@@ -15,7 +18,7 @@ public class Resource {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
