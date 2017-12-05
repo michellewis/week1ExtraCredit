@@ -11,7 +11,8 @@ public class MyFileReader {
     public  byte[] fileByteArray(String file) throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
        // File file = new File(classLoader.getResource("").getFile());
-        Path p = FileSystems.getDefault().getPath("", classLoader.getResource("").toString());
+        //classLoader.getResource("").toString()
+        Path p = FileSystems.getDefault().getPath("",file );
         return Files.readAllBytes(p);
     }
 }

@@ -11,10 +11,11 @@ import java.util.Date;
 public class App {
    private static IProjectService iProjectService;
    public static  void main(String[] args) throws IOException {
+       System.out.println("******************APPLICATION STARTED, WAIT............................");
        iProjectService= ProjectServiceFactory.getProjectService();
        //project
        Project pro=new Project();
-       pro.setDescriptionAndBeneficiaries(new MyFileReader().fileByteArray("files/projectDescriptionAndBeneficiaries.html"));
+       pro.setDescriptionAndBeneficiaries(new MyFileReader().fileByteArray("C:\\Users\\DELL\\Desktop\\projectDescription.html"));
        pro.setEndingDate(new Date());
        pro.setStartingDate(new Date());
        //Task

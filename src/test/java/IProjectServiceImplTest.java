@@ -21,7 +21,7 @@ public class IProjectServiceImplTest  {
     public final void insertTest( ) {
         Project pro=new Project();
         try {
-            pro.setDescriptionAndBeneficiaries(MyFileReader.fileByteArray("C:\\Users\\DELL\\Pictures\\test.PNG"));
+            pro.setDescriptionAndBeneficiaries(new MyFileReader().fileByteArray("C:\\Users\\DELL\\Desktop\\projectDescription.html"));
         }catch (Exception ex){
             ex.printStackTrace();
             throw new RuntimeException(ex);
@@ -70,11 +70,12 @@ public class IProjectServiceImplTest  {
         resource1.setRequiredSquils("");
         resource1.setType(ResourceType.ASSET);
         task2.addResource(resource1);
-
+        int expected=pro.getTasks().size()+1;
         pro.addTask(task2);
+
         iProjectService.update(pro);
-        //if new task is added, new value should be two
-        assertEquals(3,pro.getTasks().size());
+        //if new task is added, this test should pass
+        assertEquals(expected,pro.getTasks().size());
 
 
     }
