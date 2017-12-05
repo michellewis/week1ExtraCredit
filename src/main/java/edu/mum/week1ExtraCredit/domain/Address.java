@@ -2,9 +2,10 @@ package edu.mum.week1ExtraCredit.domain;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
-public class Address {
+public class Address implements Serializable {
 
     @Basic(optional = false)
     private String state;

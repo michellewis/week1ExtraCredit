@@ -4,15 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Volunteer {
+public class Volunteer implements Serializable {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     private String firstName;
     private String LastName;
     @ManyToMany(mappedBy = "volunteers")
@@ -31,11 +32,11 @@ public class Volunteer {
      return task;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -53,5 +54,20 @@ public class Volunteer {
 
     public void setLastName(String lastName) {
         LastName = lastName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Volunteer volunteer = (Volunteer) o;
+
+        return id.equals(volunteer.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }

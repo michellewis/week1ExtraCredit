@@ -1,13 +1,14 @@
 package edu.mum.week1ExtraCredit.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Task {
+public class Task implements Serializable {
     @Id
     @GeneratedValue
     private Integer id;
@@ -22,7 +23,7 @@ public class Task {
     Project project;
     @ElementCollection
     private List<Resource> resources;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name="TASK_VOLUNTEER", joinColumns = @JoinColumn(name="task_id"),inverseJoinColumns = @JoinColumn(name="volunteer_id"))
     private List<Volunteer> volunteers;
 
@@ -95,5 +96,18 @@ public class Task {
         return Collections.unmodifiableList(volunteers);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Task task = (Task) o;
+
+        return id.equals(task.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

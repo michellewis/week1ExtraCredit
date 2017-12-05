@@ -1,19 +1,20 @@
 package edu.mum.week1ExtraCredit.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Project {
+public class Project implements Serializable {
 
     @Id
     @GeneratedValue
     private Integer id;
     @Lob
-    @Basic(optional = false)
+    @Basic(optional = false,fetch = FetchType.EAGER)
     private byte[] descriptionAndBeneficiaries;
     private Address location;
     @Temporal(TemporalType.DATE)
@@ -82,5 +83,18 @@ public class Project {
         return Collections.unmodifiableList(tasks);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Project project = (Project) o;
+
+        return id.equals(project.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }
