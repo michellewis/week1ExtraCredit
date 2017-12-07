@@ -14,7 +14,7 @@ public class Project implements Serializable {
     @GeneratedValue
     private Integer id;
     @Lob
-    @Basic(optional = false,fetch = FetchType.EAGER)
+    @Basic(optional = true,fetch = FetchType.EAGER)
     private byte[] descriptionAndBeneficiaries;
     private Address location;
     @Temporal(TemporalType.DATE)
